@@ -62,10 +62,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	}
 
 	private String parsejwt(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		String jwt=jwtUtils.getJwtFromHeader(request);
-		log.debug("AuthTokenFilter ", jwt);
-		return null;
-	}
+    String jwt = jwtUtils.getJwtFromHeader(request);
+    log.debug("AuthTokenFilter ", jwt);
+    return jwt;
+}
 
 }

@@ -46,10 +46,10 @@ public class SecurityConfig {
         this.authenticationJwtAuthTokenFilter = authenticationJwtAuthTokenFilter;
     }
 	
-	@Bean
-	public AuthTokenFilter authenticationJwtAuthTokenFilter() {
-		return new AuthTokenFilter();
-	}
+	
+	// public AuthTokenFilter authenticationJwtAuthTokenFilter() {
+	// 	return new AuthTokenFilter();
+	// }
 	
 	
 	@Bean
@@ -68,7 +68,7 @@ public class SecurityConfig {
 		http.headers(headers -> headers.frameOptions(frameOptions->frameOptions.sameOrigin()));
 		http.csrf(csrf ->csrf.disable());
 		
-		http.addFilterBefore(authenticationJwtAuthTokenFilter(),
+		http.addFilterBefore(authenticationJwtAuthTokenFilter,
 				UsernamePasswordAuthenticationFilter.class);
 		
 		return http.build();
@@ -97,12 +97,12 @@ public class SecurityConfig {
 //		
 //	}
 	
-	@Bean
+	
 	public UserDetailsService userDetailsService (DataSource dataSource) {
 	return new JdbcUserDetailsManager (dataSource);
 	}
 	
-	@Bean
+	
 	public CommandLineRunner initData (UserDetailsService userDetailsService) {
 
 	return args -> {
